@@ -28,13 +28,14 @@
 <body>
   <div id="app" v-cloak="">
     {{ greatings }}
-    <input v-model="greatings" />
+    <input @keyup.enter="greet(greatings + '!!!')" v-model="greatings" />
 
     <hr />
-
+    
+    <button @click="toggleBox">Toggle Box</button>
     <div v-if="isVisible" class="box"></div>
-    <div v-else-if="isVisible2" class="box two"></div>
-    <div v-else class="box three"></div>
+    <!-- <div v-else-if="isVisible2" class="box two"></div>
+      <div v-else class="box three"></div> -->
   </div>
   
   <script src="https://unpkg.com/vue@next"></script>
@@ -44,9 +45,17 @@
         return {
           greatings: 'Hello VUE 3!',
           isVisible: false,
-          isVisible2: true
+          // isVisible2: true
         }
-      }
+      },
+      methods: {
+        toggleBox: function() {
+          this.isVisible = !this.isVisible
+        },
+        greet: function(greatings) {
+          alert(greatings)
+        }
+      },
     })
     app.mount('#app')
   </script>

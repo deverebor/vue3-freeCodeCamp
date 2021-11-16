@@ -24,4 +24,10 @@ Para pegar o valor armazenado dentro e um input e alterar o seu estado, é neces
 
 ## Events & Methods
 
-d
+`v-on` é o evento que vai ser executado quando o usuário clicar no elemento.
+
+Para usar eventos no Vue não precisa utilizar a palavra `v-on`, pode-se utilizar somente `@nome_do_evento`
+
+Para chamar um método, é necessário utilizar a palavra `@nome_do_evento="nomeDoMetodo"`
+
+Se o método receber algum parâmetro, é necessário utilizar a palavra `:nome_do_evento="nomeDoMetodo(conteúdoDoParametro)"`
