@@ -31,3 +31,23 @@ Para usar eventos no Vue não precisa utilizar a palavra `v-on`, pode-se utiliza
 Para chamar um método, é necessário utilizar a palavra `@nome_do_evento="nomeDoMetodo"`
 
 Se o método receber algum parâmetro, é necessário utilizar a palavra => `:nome_do_evento="nomeDoMetodo(conteúdoDoParametro)"`
+
+## Components
+
+Um componente precisa ter uma tag `template:` onde ficará a estrutura desse componente. E também uma função `data(){}` onde irá ficar as ações do componente.
+
+para criar um componente usa-se:
+
+```ts
+app.component('nome-do-compnente', {
+// Conteúdo do componente.
+  template: ``,
+
+  data() {
+    return {
+      // Conteúdo da função data.
+    }
+  }
+
+})
+```
