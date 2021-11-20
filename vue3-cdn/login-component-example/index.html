@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,60 +31,90 @@
     }
   </style>
 </head>
+
 <body>
   <div id="app" v-cloak>
     <login-form />
 
     <hr />
-    
+
     <button @click.prevent.stop="toggleBox">Toggle Box</button>
     <div v-if="isVisible" class="box"></div>
   </div>
-  
+
   <script src="https://unpkg.com/vue@next"></script>
   <script>
     let app = Vue.createApp({
-      data: function() {
+      data: function () {
         return {
           greatings: 'Hello VUE 3!',
           isVisible: false,
         }
       },
       methods: {
-        toggleBox: function() {
+        toggleBox: function () {
           this.isVisible = !this.isVisible
         },
-        greet: function(greatings) {
+        greet: function (greatings) {
           alert(greatings)
         }
       },
     })
 
     app.component('login-form', {
-      template:`
+      template: `
         <form @submit.prevent="handleSubmit">
           <h1>{{ title }}</h1>
-          <input type="email" v-model="email" />
-          <input type="password" v-model="password" />
+          <custom-input v-model="email" v-bind:label="emailLabel" />
+          <custom-input v-model="password" v-bind:label="passwordLabel" />
 
           <button type="submit">Log in</button>
         </form>
       `,
+      components: ['custom-input'],
       data() {
         return {
           title: 'Login Form',
           email: '',
-          password: ''
+          password: '',
+          emailLabel: 'Email',
+          passwordLabel: 'Password',
         }
       },
-      methods:{
+      methods: {
         handleSubmit() {
           console.log(this.email, this.password)
         }
       }
     })
 
+    app.component('custom-input', {
+      template: `
+        <label>
+          {{ label }}
+          <input type="text" v-model="inputValue" />
+        </label>
+      `,
+      props: ['label', 'modelValue'],
+      computed:{
+        inputValue: {
+          get() {
+            return this.modelValue
+          },
+          set(value) {
+            this.$emit('update:modelValue', value)
+          }
+        }
+      },
+      // data() {
+      //   return {
+      //     inputValue: '',
+      //   }
+      // }
+    })
+
     app.mount('#app')
   </script>
 </body>
+
 </html>

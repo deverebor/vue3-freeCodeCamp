@@ -51,3 +51,7 @@ app.component('nome-do-compnente', {
 
 })
 ```
+
+Para se referenciar ao `v-bind:` pode-se escreve-lo como `v-bind:nome_do_atributo="valor"` ou `:nome_do_atributo="valor"`
+
+`computed:{}` é um objeto onde pode-se colocar nome de variáveis como keys. E sempre que esse valor mudar eu posso utilizar do encapsulamento.
